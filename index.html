@@ -4,7 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Bookplate — Your Private Reading Life</title>
-<link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap|Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">   
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -19,13 +22,14 @@
     --text-mid: #6b4040;
     --text-light: #9a7070;
     --border: rgba(92, 26, 26, 0.15);
+		--sans-serif: 'Lato', Arial, sans-serif;
     --serif: 'Averia Serif Libre', Georgia, serif;
   }
 
   body {
     background: var(--cream);
     color: var(--text-dark);
-    font-family: var(--serif);
+    font-family: var(--sans-serif);
     font-weight: 400;
     line-height: 1.7;
     font-size: 17px;
@@ -98,7 +102,8 @@
   }
   .hero h1 {
     font-size: clamp(2.4rem, 5vw, 3.8rem);
-    font-weight: 300;
+    font-family: var(--serif);
+    font-weight: 400;
     line-height: 1.2;
     margin-bottom: 1.5rem;
     max-width: 720px;
@@ -156,6 +161,7 @@
   }
   .btn-ghost:hover { border-color: rgba(242,238,232,0.7); }
   .hero-note {
+    font-family: var(--serif);
     margin-top: 1.2rem;
     font-size: 13px;
     color: rgba(242,238,232,0.45);
@@ -166,6 +172,7 @@
   section { padding: 5rem 2rem; }
   .container { max-width: 860px; margin: 0 auto; }
   .section-label {
+    font-family: var(--serif);
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -174,6 +181,7 @@
     font-weight: 300;
   }
   h2 {
+    font-family: var(--serif);
     font-size: clamp(1.8rem, 3.5vw, 2.6rem);
     font-weight: 300;
     line-height: 1.25;
@@ -287,6 +295,7 @@
     background: rgba(215,83,64,0.15);
   }
   .compare-col h4 {
+    font-family: var(--serif);
     font-size: 0.9rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -305,6 +314,7 @@
     gap: 0.75rem;
   }
   .compare-list li {
+    font-family: var(--sans-serif);
     font-size: 0.95rem;
     padding-left: 1.4rem;
     position: relative;
@@ -445,13 +455,13 @@
 
 <!-- NAV -->
 <nav>
-  <img src="https://bookplate.app/images/logo/bookplate-logo-reverse.png" alt="Bookplate" class="nav-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+  <img src="https://getbookplate.com/images/logo/bookplate-logo-reverse.png" alt="Bookplate" class="nav-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
   <span style="display:none; color: #F2EEE8; font-family: 'Averia Serif Libre', Georgia, serif; font-size: 1.25rem; font-weight:300; letter-spacing:0.05em;">Bookplate</span>
   <ul class="nav-links">
-    <li><a href="#">Features</a></li>
-    <li><a href="#">Pricing</a></li>
-    <li><a href="#">Sign in</a></li>
-    <li><a href="#" class="nav-cta">Get started free</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="https://bookplate.app/users/sign_in">Sign in</a></li>
+    <li><a href="https://bookplate.app/signup" class="nav-cta">Get started free</a></li>
   </ul>
 </nav>
 
@@ -461,7 +471,7 @@
   <h1>Your library. <em>Not</em> your reading personality.</h1>
   <p class="hero-sub">Bookplate is a home library app for people who read for themselves — not for an audience. Track what you own, what you've read, and what you actually think about it. Privately.</p>
   <div class="hero-actions">
-    <a href="#" class="btn-primary">Start for free</a>
+    <a href="https://bookplate.app/signup" class="btn-primary">Start for free</a>
     <a href="#" class="btn-ghost">See how it works</a>
   </div>
   <p class="hero-note">Free up to 100 books. No credit card required.</p>
@@ -485,7 +495,7 @@
 
 <!-- FEATURES -->
 <section>
-  <div class="container">
+  <div class="container" id="features">
     <p class="section-label">What it does</p>
     <h2>Everything you need. <em>Nothing you don't.</em></h2>
     <p class="lead">Bookplate is built around a simple idea: track the life of your books. That shapes every feature decision.</p>
@@ -564,10 +574,10 @@
 
 <!-- PRICING -->
 <section>
-  <div class="container">
+  <div class="container" id="pricing">
     <p class="section-label">Pricing</p>
     <h2>Simple, honest pricing.</h2>
-    <p class="lead">Start free. Upgrade if and when it makes sense for you. No dark patterns, no confusing tiers, no gotchas.</p>
+    <p class="lead">Start on the free tier. Upgrade if and when it makes sense for you and your library. No dark patterns, no confusing tiers, no gotchas.</p>
     <div class="pricing-grid">
       <div class="price-card">
         <p class="price-tier">Free</p>
@@ -578,9 +588,7 @@
           <li>Core library tracking</li>
           <li>Shared library &amp; multi-user</li>
           <li>Goodreads and LibraryThing import</li>
-          <li>Loan tracking</li>
           <li>Custom covers</li>
-          <li>TBR or random next-read picker</li>
         </ul>
         <a href="#" class="btn-primary" style="display:block; text-align:center; width:100%;">Get started free</a>
       </div>
@@ -591,7 +599,8 @@
         <p class="price-cadence">per month, or $35/year</p>
         <ul class="price-features">
           <li><b>Unlimited books</b></li>
-          <li>Everything in Free</li>
+          <li>Includes all features in Free tier</li>
+          <li>Shared library &amp; multi-user</li>
           <li>Rich reading stats</li>
         </ul>
         <a href="#" class="btn-primary" style="display:block; text-align:center; width:100%;">Start free trial</a>
@@ -602,10 +611,9 @@
 
 <!-- FOOTER -->
 <footer>
-  <img src="https://bookplate.app/images/logo/bookplate-logo-reverse.png" alt="Bookplate" class="footer-logo" onerror="this.style.display='none';" />
+  <img src="https://getbookplate.com/images/logo/bookplate-logo-reverse.png" alt="Bookplate" class="footer-logo" onerror="this.style.display='none';" />
   <p>
-    <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
-    <a href="#">Terms of Service</a> &nbsp;·&nbsp;
+    <a href="https://bookplate.app/privacy">Privacy Policy</a> &nbsp;·&nbsp;
     <a href="mailto:info@bookplate.app">Contact</a>
   </p>
   <p style="margin-top: 0.75rem;">© 2026 SereneBooks LLC, a Pennsylvania limited liability company. Made in Philadelphia.</p>
