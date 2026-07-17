@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free home library spreadsheet template · Bookplate</title>
+<meta name="description" content="A free, clean spreadsheet template for cataloging your home library. Works in Google Sheets and Excel. Track your books, shelves, and reading life. No signup required." />
+<link rel="canonical" href="https://getbookplate.com/tools/library-template/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://getbookplate.com/tools/library-template/">
+<meta property="og:site_name" content="Bookplate">
+<meta property="og:title" content="A free home library spreadsheet template">
+<meta property="og:description" content="Catalog the books you own, where they live, and what you thought of them. Works in Google Sheets and Excel. No signup.">
+<meta property="og:image" content="https://getbookplate.com/images/og/og-library-template.png">
+<meta property="og:image:alt" content="Preview of the free home library spreadsheet template with book, copy, and reading columns">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A free home library spreadsheet template">
+<meta name="twitter:description" content="Catalog the books you own, where they live, and what you thought of them. Works in Google Sheets and Excel. No signup.">
+<meta name="twitter:image" content="https://getbookplate.com/images/og/og-library-template.png">
+<link rel="icon" href="/images/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Brand palette (Bookplate style guide): exactly four colors.
+     Tints are alpha blends or shades of these four; no off-palette hues. */
+  :root {
+    --cream: #F2EEE8;
+    --burgundy: #561A27;
+    --coral: #D75340;
+    --coral-light: rgba(215, 83, 64, 0.12);
+    --green: #A4A056;
+    --cta: #D75340;
+    --cta-hover: #B8432F;
+    --text-dark: #2D1219;
+    --text-mid: rgba(86, 26, 39, 0.78);
+    --text-light: rgba(86, 26, 39, 0.55);
+    --border: rgba(86, 26, 39, 0.15);
+    --sans-serif: 'Lato', Arial, sans-serif;
+    --serif: 'Averia Serif Libre', Georgia, serif;
+    --display: 'DM Serif Display', Georgia, serif;
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--text-dark);
+    font-family: var(--sans-serif);
+    font-weight: 400;
+    line-height: 1.7;
+    font-size: 17px;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--burgundy);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 66px;
+  }
+  .nav-logo { height: 60px; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.85;
+    letter-spacing: 0.03em;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-cta {
+    background: var(--coral);
+    color: #fff !important;
+    opacity: 1 !important;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  /* PAGE HEADER */
+  .hero {
+    font-family: var(--serif);
+    background: var(--burgundy);
+    color: var(--cream);
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+  }
+  .hero-eyebrow {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    font-family: var(--serif);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: rgba(242,238,232,0.75);
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary {
+    background: var(--cta);
+    color: #fff;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 4px;
+    font-family: var(--sans-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--cta-hover); }
+  .btn-ghost {
+    color: var(--cream);
+    border: 1px solid rgba(242,238,232,0.35);
+    padding: 13px 28px;
+    border-radius: 4px;
+    font-family: var(--sans-serif);
+    font-size: 1rem;
+    cursor: pointer;
+    background: transparent;
+    letter-spacing: 0.02em;
+    transition: border-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: rgba(242,238,232,0.7); }
+  .hero-note {
+    font-family: var(--sans-serif);
+    margin-top: 1.2rem;
+    font-size: 13px;
+    color: rgba(242,238,232,0.45);
+    font-style: italic;
+  }
+
+  /* SECTION SHELL */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 860px; margin: 0 auto; }
+  .section-label {
+    font-family: var(--sans-serif);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--burgundy);
+    margin-bottom: 1.5rem;
+  }
+  .lead {
+    font-size: 1.1rem;
+    color: var(--text-mid);
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+  .inline-link { color: var(--coral); text-decoration: none; }
+  .inline-link:hover { text-decoration: underline; }
+
+  /* SHEET PREVIEW */
+  .preview-section { padding-bottom: 0; }
+  .sheet-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #fff;
+  }
+  table.sheet {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 920px;
+    font-size: 0.85rem;
+  }
+  .sheet th {
+    text-align: left;
+    padding: 10px 14px;
+    white-space: nowrap;
+    font-weight: 700;
+  }
+  .sheet th.g-book { background: var(--burgundy); color: var(--cream); }
+  .sheet th.g-copy { background: var(--coral); color: #fff; }
+  .sheet th.g-reading { background: var(--green); color: var(--text-dark); }
+  .sheet td {
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
+    white-space: nowrap;
+    color: var(--text-mid);
+  }
+  .preview-note {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+
+  /* COLUMN GROUP CARDS */
+  .groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .group-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem 1.75rem;
+    border-top: 4px solid var(--border);
+  }
+  .group-card.book { border-top-color: var(--burgundy); }
+  .group-card.copy { border-top-color: var(--coral); }
+  .group-card.reading { border-top-color: var(--green); }
+  .group-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--burgundy);
+    margin-bottom: 0.6rem;
+  }
+  .group-card p {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+  .group-card .group-cols {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+
+  /* STEPS */
+  .steps-section {
+    background: #fff;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .steps {
+    list-style: none;
+    counter-reset: step;
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .steps li {
+    counter-increment: step;
+    padding-left: 3.25rem;
+    position: relative;
+    font-size: 1rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    /* Center the pill on the first text line: line box is ~1.7rem tall,
+       pill is 2.25rem, so the pill starts ~0.27rem above the text top */
+    top: -0.27rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: var(--coral-light);
+    color: var(--coral);
+    font-weight: 700;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* IMPORT TRANSFORMATION */
+  .transform { margin-top: 2.5rem; }
+  .mini-row-scroll { overflow-x: auto; }
+  table.mini-row {
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-size: 0.8rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .mini-row th {
+    background: var(--burgundy);
+    color: var(--cream);
+    font-weight: 700;
+    text-align: left;
+    padding: 6px 12px;
+    white-space: nowrap;
+  }
+  .mini-row td {
+    padding: 8px 12px;
+    color: var(--text-mid);
+    white-space: nowrap;
+    border-top: 1px solid var(--border);
+  }
+  .transform-arrow {
+    text-align: center;
+    margin: 1.5rem 0;
+  }
+  .transform-arrow .arrow-dot {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 0.5rem;
+    border-radius: 50%;
+    background: var(--coral-light);
+    color: var(--coral);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .transform-arrow span {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-style: italic;
+  }
+  .book-card {
+    max-width: 620px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem;
+    display: flex;
+    gap: 1.5rem;
+    box-shadow: 0 10px 30px rgba(86, 26, 39, 0.08);
+  }
+  .book-cover {
+    flex-shrink: 0;
+    width: 96px;
+    height: 144px;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(86, 26, 39, 0.18);
+  }
+  .book-card-body { min-width: 0; }
+  .book-card-body h3 {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--burgundy);
+    line-height: 1.2;
+  }
+  .book-card-body h3 .by-author {
+    font-family: var(--sans-serif);
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    margin-left: 0.35rem;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+  .chip {
+    font-size: 0.78rem;
+    padding: 3px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    color: var(--text-dark);
+    white-space: nowrap;
+  }
+  .chip.ghost {
+    background: transparent;
+    border-style: dashed;
+    color: var(--text-light);
+  }
+  .book-meta-line {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    margin-top: 0.85rem;
+  }
+  .book-meta-line .editable {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--text-light);
+  }
+  .detail-line {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 0.35rem;
+  }
+  .reading-strip {
+    background: var(--coral-light);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    margin-top: 1rem;
+  }
+  .reading-strip .reading-line {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    font-weight: 700;
+  }
+  .reading-strip .stars {
+    color: var(--coral);
+    letter-spacing: 0.12em;
+    font-weight: 400;
+    margin-left: 0.4rem;
+  }
+  .marginalia {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    margin-top: 0.4rem;
+  }
+  .card-shelf-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--text-light);
+  }
+  .avatars { display: flex; }
+  .avatars span {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--cream);
+    border: 2px solid #fff;
+  }
+  .avatars span + span { margin-left: -8px; }
+  .avatars .av-1 { background: var(--burgundy); }
+  .avatars .av-2 { background: var(--coral); }
+  .avatars .av-3 { background: var(--green); color: var(--text-dark); }
+  .card-caption {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    max-width: 560px;
+    margin: 1.25rem auto 0;
+  }
+  .import-cta-row { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  @media (max-width: 520px) {
+    .book-card { flex-direction: column; align-items: center; text-align: center; }
+    .chips, .card-shelf-row { justify-content: center; }
+  }
+  .import-cta-row .btn-ghost {
+    color: var(--burgundy);
+    border-color: var(--border);
+  }
+  .import-cta-row .btn-ghost:hover { border-color: var(--burgundy); }
+  .homework-section {
+    background: #fff;
+    border-top: 1px solid var(--border);
+  }
+
+  /* FAQ */
+  .faq-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+  .faq-list details {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+  }
+  .faq-list summary {
+    font-weight: 700;
+    color: var(--burgundy);
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  .faq-list details p {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--burgundy);
+    color: rgba(242,238,232,0.6);
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 0.85rem;
+    line-height: 2;
+  }
+  footer a { color: rgba(242,238,232,0.6); text-decoration: none; }
+  footer a:hover { color: var(--cream); }
+  footer .footer-logo {
+    display: block;
+    height: 28px;
+    margin: 0 auto 1.5rem;
+    opacity: 0.85;
+  }
+
+  @media (max-width: 600px) {
+    .import-box { flex-direction: column; text-align: center; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/"><img src="/images/logo/bookplate-logo-reverse.png" alt="Bookplate" class="nav-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" /></a>
+  <span style="display:none; color: #F2EEE8; font-family: 'Averia Serif Libre', Georgia, serif; font-size: 1.25rem; font-weight:300; letter-spacing:0.05em;">Bookplate</span>
+  <ul class="nav-links">
+    <li><a href="/#features">Features</a></li>
+    <li><a href="/#pricing">Pricing</a></li>
+    <li><a href="/tools/library-template/">Free template</a></li>
+    <li><a href="https://bookplate.app/users/sign_in">Sign in</a></li>
+    <li><a href="https://bookplate.app/signup" class="nav-cta">Get started free</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="hero">
+  <p class="hero-eyebrow">Free tool</p>
+  <h1>A clean home library spreadsheet.</h1>
+  <p class="hero-sub">For readers whose books quietly multiply: catalog what you own, where it lives, and what it did to your heart. Works in Google Sheets and Excel. No signup, no watermark, no clutter.</p>
+  <div class="hero-actions">
+    <a href="home-library-inventory.xlsx" class="btn-primary" download>Download for Excel &amp; Sheets</a>
+    <a href="home-library-inventory.csv" class="btn-ghost" download>Download as CSV</a>
+    <!-- TODO(Serene): publish a view-only Google Sheet from the xlsx and add:
+         <a href="YOUR_SHEETS_TEMPLATE_LINK" class="btn-ghost">Make a copy in Google Sheets</a> -->
+  </div>
+  <p class="hero-note">Free forever. A gift from one book collector to another.</p>
+</div>
+
+<!-- SHEET PREVIEW -->
+<section class="preview-section">
+  <div class="container">
+    <div class="sheet-scroll">
+      <table class="sheet">
+        <thead>
+          <tr>
+            <th class="g-book">ISBN</th><th class="g-book">Title</th><th class="g-book">Author</th><th class="g-book">Genre</th><th class="g-book">Format</th>
+            <th class="g-copy">Location</th><th class="g-copy">Acquired</th>
+            <th class="g-reading">Status</th><th class="g-reading">Rating</th><th class="g-reading">My notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>9780141439518</td><td>Pride and Prejudice</td><td>Jane Austen</td><td>Fiction</td><td>Softcover</td><td>Living room</td><td>2015</td><td>Read</td><td>5</td><td>Reread every few winters.</td></tr>
+          <tr><td>9780547928227</td><td>The Hobbit</td><td>J. R. R. Tolkien</td><td>Fantasy</td><td>Softcover</td><td>Living room</td><td>2019-12-25</td><td>Read</td><td>4</td><td>Read aloud over Christmas break.</td></tr>
+          <tr><td>9780451524935</td><td>1984</td><td>George Orwell</td><td>Fiction</td><td>Softcover</td><td>Office</td><td>2021-03-02</td><td>Read</td><td>4</td><td></td></tr>
+          <tr><td>9781400033416</td><td>Beloved</td><td>Toni Morrison</td><td>Fiction</td><td>Hardcover</td><td>Bedroom</td><td>2024-05-14</td><td>Currently reading</td><td></td><td>Book club pick for May.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="preview-note">The first columns of the sheet, with its four example rows. Publisher, publication year, page count, and date read columns are in the download too.</p>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section>
+  <div class="container">
+    <p class="section-label">What's inside</p>
+    <h2>One row per book, three kinds of columns.</h2>
+    <p class="lead">The sheet is organized the way librarians actually think: facts about the book, facts about your copy, and your reading life. Dropdowns for genre, format, location, and status are fed by lists you control, and four example rows keep the seats warm until your own books arrive.</p>
+    <div class="groups-grid">
+      <div class="group-card book">
+        <h3>The book</h3>
+        <p>What's true of this edition anywhere. The ISBN from the back cover pins down exactly which printing you own.</p>
+        <span class="group-cols">ISBN · Title · Author · Genre · Format · Publisher · Year · Pages</span>
+      </div>
+      <div class="group-card copy">
+        <h3>Your copy</h3>
+        <p>What makes it yours: the shelf it lives on and the day it came home.</p>
+        <span class="group-cols">Location · Acquired</span>
+      </div>
+      <div class="group-card reading">
+        <h3>Your reading</h3>
+        <p>Your reading record: whether you've read it, what you rated it, when you finished, and what you thought.</p>
+        <span class="group-cols">Status · Rating · Date read · My notes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO USE -->
+<section class="steps-section">
+  <div class="container">
+    <p class="section-label">How to use it</p>
+    <h2>Five minutes to a working catalog.</h2>
+    <ol class="steps">
+      <li>Open the file in Google Sheets (File, then Import) or Excel.</li>
+      <li>Add one row per book. The ISBN is on the back cover or the copyright page.</li>
+      <li>Tune the Lists tab so the dropdowns match your shelves and genres.</li>
+      <li>Sort and filter freely. The header row stays put.</li>
+      <li>Replace the example rows with your own stacks.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- WHEN IT BECOMES HOMEWORK -->
+<section class="homework-section">
+  <div class="container">
+    <p class="section-label">And later, if you want</p>
+    <h2>When the spreadsheet starts to feel like homework.</h2>
+    <p class="lead">Typing every title is fine for fifty books. It stops being fine a few piles later, somewhere between the loan you forgot and the nightstand drawer that eats paperbacks. Bookplate reads this exact file, no cleanup first. Here's the example sheet's Hobbit row, about two minutes after import:</p>
+
+    <div class="transform">
+      <div class="mini-row-scroll">
+        <table class="mini-row">
+          <thead>
+            <tr><th>ISBN</th><th>Title</th><th>Author</th><th>Location</th><th>Status</th><th>Rating</th><th>My notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>9780547928227</td><td>The Hobbit</td><td>J. R. R. Tolkien</td><td>Living room</td><td>Read</td><td>4</td><td>Read aloud over Christmas break.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="transform-arrow">
+        <div class="arrow-dot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="19"/><polyline points="5 12 12 19 19 12"/></svg></div>
+        <span>one upload later</span>
+      </div>
+
+      <div class="book-card">
+        <img class="book-cover" src="/images/covers/the-hobbit-9780547928227.jpg" alt="The Hobbit cover" width="96" height="144" loading="lazy" decoding="async">
+        <div class="book-card-body">
+          <h3>The Hobbit <span class="by-author">by J. R. R. Tolkien</span></h3>
+          <div class="chips">
+            <span class="chip">Fantasy</span>
+            <span class="chip ghost">+ tag</span>
+          </div>
+          <p class="book-meta-line">Softcover · shelved in <span class="editable">Living room</span> · in your library since <span class="editable">December 2019</span></p>
+          <p class="detail-line">Additional detail · Synopsis · Publication</p>
+          <div class="reading-strip">
+            <p class="reading-line">Read <span class="stars" aria-label="Rated 4 of 5">★★★★☆</span></p>
+            <p class="marginalia">"Read aloud over Christmas break."</p>
+          </div>
+          <div class="card-shelf-row">
+            <div class="avatars" aria-hidden="true"><span class="av-1">M</span><span class="av-2">J</span><span class="av-3">R</span></div>
+            <span>The whole household reads from one shelf</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="card-caption">You typed one spreadsheet row. The cover, the pages, the publication details, and a library your whole household can share came with the upload. Ratings are part of the shared shelf; your notes stay yours alone.</p>
+    </div>
+
+    <div class="import-cta-row">
+      <a href="https://bookplate.app/signup" class="btn-primary">Try Bookplate free</a>
+      <a href="/#features" class="btn-ghost">See what Bookplate does</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <p class="section-label">Questions</p>
+    <h2>Cataloging a home library, answered.</h2>
+    <div class="faq-list">
+      <details>
+        <summary>How do I catalog my home library?</summary>
+        <p>Go shelf by shelf, one row per book. Record the ISBN plus where the book lives; title and author keep the row readable at a glance. A spreadsheet is the fastest zero-cost way to start, and dropdown lists keep genres and locations consistent as the catalog grows.</p>
+      </details>
+      <details>
+        <summary>Where do I find a book's ISBN?</summary>
+        <p>On the barcode on the back cover, or on the copyright page inside. Books printed before about 1970 may not have one; leave the cell blank and record the title and author instead.</p>
+      </details>
+      <details>
+        <summary>What columns should a book inventory spreadsheet have?</summary>
+        <p>Three kinds: facts about the book (ISBN, title, author, genre, format, publisher, year, pages), facts about your copy (location, date acquired), and your reading record (status, rating, date read, notes). This template ships with all three groups ready to use.</p>
+      </details>
+      <details>
+        <summary>Does the template work in Google Sheets?</summary>
+        <p>Yes. Open Google Sheets, choose File, then Import, and upload the Excel file. The dropdowns and the editable lists behind them come across intact.</p>
+      </details>
+      <details>
+        <summary>Is the template really free?</summary>
+        <p>Yes. Free forever, no signup, no watermark. It comes from Bookplate, a private home library app built by a reader with the same beautiful problem, and the template is yours to keep whether or not you ever use the app.</p>
+      </details>
+      <details>
+        <summary>Can I add my own columns?</summary>
+        <p>Add anything you like. If you later import the sheet into Bookplate, columns it doesn't recognize are simply left alone rather than causing errors.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I catalog my home library?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Go shelf by shelf, one row per book. Record the ISBN plus where the book lives; title and author keep the row readable at a glance. A spreadsheet is the fastest zero-cost way to start, and dropdown lists keep genres and locations consistent as the catalog grows." }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do I find a book's ISBN?",
+      "acceptedAnswer": { "@type": "Answer", "text": "On the barcode on the back cover, or on the copyright page inside. Books printed before about 1970 may not have one; leave the cell blank and record the title and author instead." }
+    },
+    {
+      "@type": "Question",
+      "name": "What columns should a book inventory spreadsheet have?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Three kinds: facts about the book (ISBN, title, author, genre, format, publisher, year, pages), facts about your copy (location, date acquired), and your reading record (status, rating, date read, notes). This template ships with all three groups ready to use." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the template work in Google Sheets?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Open Google Sheets, choose File, then Import, and upload the Excel file. The dropdowns and the editable lists behind them come across intact." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the template really free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Free forever, no signup, no watermark. It comes from Bookplate, a private home library app built by a reader with the same beautiful problem, and the template is yours to keep whether or not you ever use the app." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add my own columns?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Add anything you like. If you later import the sheet into Bookplate, columns it doesn't recognize are simply left alone rather than causing errors." }
+    }
+  ]
+}
+</script>
+
+<!-- FOOTER -->
+<footer>
+  <img src="/images/logo/bookplate-logo-reverse.png" alt="Bookplate" class="footer-logo" onerror="this.style.display='none';" />
+  <p>
+    <a href="/tools/library-template/">Free library template</a> &nbsp;·&nbsp;
+    <a href="https://bookplate.app/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="https://bookplate.app/terms">Terms of Service</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@bookplate.app">Contact</a>
+  </p>
+  <p style="margin-top: 0.75rem;">© 2026 SereneBooks LLC, a Pennsylvania limited liability company. Made in Philadelphia.</p>
+</footer>
+</body>
+</html>
